@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	background: #f4b164; /* Old browsers */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ea780e), color-stop(100%,#f4b164)); /* Chrome,Safari4+ */
+/*	background: -webkit-radial-gradient(center, ellipse cover,  #ea780e 0%, #f4b164 100%); /* Chrome10+,Safari5.1+ */
+	background: -moz-radial-gradient(center, ellipse cover,  #ea780e 0%, #f4b164 100%); /* Firefox3.6+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #ea780e 0%,#f4b164 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover,  #ea780e 0%,#f4b164 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea780e', endColorstr='#f4b164',GradientType=1 ); /* IE6-9 fallback on horizontal gradient*/
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+a {
+	color: #0021A5; 
+	text-decoration: underline;
+	font-family: 'Kameron', serif;
+}
+
+a:hover {
+	color: #0021A5; 
+	text-decoration: none;
+	font-family: 'Kameron', serif;
+	
+}
+
+a:visited {
+	color: #0021A5; 
+	text-decoration: underline;
+	font-family: 'Kameron', serif;
+}
+
+p.special{ color: black; font-family:'Times New Roman', Times, serif;} 
+
+div {
+	color: #0021A5; 
+	font-family: 'Kameron', serif;
+}
+
+table {
+	color: #0021A5; 
+}
