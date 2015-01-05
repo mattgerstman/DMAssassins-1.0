@@ -19,6 +19,9 @@
 -- Table structure for table `tweetTest`
 --
 
+create database dmassassins1;
+use dmassassins1;
+
 DROP TABLE IF EXISTS `tweetTest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
