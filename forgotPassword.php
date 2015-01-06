@@ -20,8 +20,8 @@ Email: <input type="text" name="email" /><br />
 
 <?php
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 ?>
 
 </div>

@@ -11,8 +11,8 @@ $firstname = $_POST["firstname"];
 $lastname = $_POST["lastname"];
 $facebook = $_POST["facebook"];
 $email = $_POST["email"];
-$team = $_POST["team"];	
-$usertype = $_POST["admin"];	
+$team = $_POST["team"];
+$usertype = $_POST["admin"];
 
 //combine first and last names
 $name = htmlspecialchars(ucwords($firstname . " " . $lastname), ENT_QUOTES);
@@ -24,8 +24,8 @@ $result = mysql_query("UPDATE $table SET name = '$name', facebook = '$facebook',
 
 if($result)
 {//alerts overall that it worked
-	
-	$_SESSION['status']="<br />User Information Changed";
+
+	$_SESSION['DM1-status']="<br />User Information Changed";
 
 }
 else
@@ -33,7 +33,7 @@ else
 
 // alerts overall that it didnt work
 
-	$_SESSION['status']="<p>An error occurred when trying to change user information. <br /> Please contact Matt Gerstman at <a href='mailto:MattGerstman@gmail.com'>MattGerstman@gmail.com</a> for assistance.</p>";
+	$_SESSION['DM1-status']="<p>An error occurred when trying to change user information. <br /> Please contact Matt Gerstman at <a href='mailto:MattGerstman@gmail.com'>MattGerstman@gmail.com</a> for assistance.</p>";
 
 }
 

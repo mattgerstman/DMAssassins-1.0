@@ -26,9 +26,9 @@ $email = mysql_result($result,0,"email");
 
 	$subject = 'You Have A New Target';
 	$message = "Hello $name,
-	
+
 	Due to unforeseen circumstances we have assigned you a new target. You may view your new target's information on your account at http://sgiordano.info/assassins
-	
+
 FTK!
 The Assassins Staff";
 	$headers = 'From: assassins@floridadm.org' . "\r\n" .
@@ -40,14 +40,14 @@ if ($hisTarget)
 
 if($result)
 {
-	
-$_SESSION['status']="<br />User Deleted";
+
+$_SESSION['DM1-status']="<br />User Deleted";
 
 }
 else
 {
 
- $_SESSION['status']="<p>An error occurred when trying to delete the user. <br /> Please contact Matt Gerstman at <a href='mailto:MattGerstman@gmail.com'>MattGerstman@gmail.com</a></p>";
+ $_SESSION['DM1-status']="<p>An error occurred when trying to delete the user. <br /> Please contact Matt Gerstman at <a href='mailto:MattGerstman@gmail.com'>MattGerstman@gmail.com</a></p>";
 
 }
 echo('<SCRIPT LANGUAGE="JavaScript">history.go(-1);</script>');

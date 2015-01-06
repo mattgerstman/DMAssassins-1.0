@@ -15,9 +15,9 @@ check();
 <?php
 
 	$oldPassword = md5($_POST['old']);
-	$password = $_POST['new'];	
+	$password = $_POST['new'];
 	$newPassword = md5($password);
-	$username = $_SESSION['username'];
+	$username = $_SESSION['DM1-username'];
 	echo($username);
 	$table = "users";
 
@@ -30,19 +30,19 @@ connect();
 
 if ((mysql_num_rows($result)) && $password)
 {//check if old password is correct, ifso email the user their new password
-	$name = mysql_result($result, 0,"name");							
+	$name = mysql_result($result, 0,"name");
 	$email = mysql_result($result, 0,"email");
-	
+
 	mysql_query("UPDATE $table SET password='$newPassword' where username = '$username' AND password='$oldPassword'");
-	
+
 	$subject = 'Password Reset';
-		
+
 //indentation here is important. if you include an indentation in the message it will show up in the email itself. Also HTML doesn't translate to the email.
 
 	$message = "Hello $name,
 
 	Your password has been changed to '$password'.
-	
+
 
 FTK!
 The Assassins Staff";
@@ -50,18 +50,18 @@ The Assassins Staff";
 				$headers = 'From: assassins@floridadm.com' . "\r\n" .
 				    'X-Mailer: PHP/' . phpversion();
 
-	mail($email, $subject, $message, $headers);		
-	$_SESSION['status']="<p>Password successfully changed. Please login to test it.</p>";
+	mail($email, $subject, $message, $headers);
+	$_SESSION['DM1-status']="<p>Password successfully changed. Please login to test it.</p>";
 	echo('<SCRIPT LANGUAGE="JavaScript">redirURL = "login.php";self.location.href = redirURL;</script>');
 }
 else if ($password)
 {
-	$_SESSION['status']="<p><strong>Error:</strong> Old password is incorrect</p>";
+	$_SESSION['DM1-status']="<p><strong>Error:</strong> Old password is incorrect</p>";
 		echo('<SCRIPT LANGUAGE="JavaScript">redirURL = "myProfile.php";	self.location.href = redirURL;</script>');
 }
 else
 {
-	$_SESSION['status']="<p><strong>Error:</strong> New password cannot be blank</p>";
+	$_SESSION['DM1-status']="<p><strong>Error:</strong> New password cannot be blank</p>";
 		echo('<SCRIPT LANGUAGE="JavaScript">redirURL = "myProfile.php";	self.location.href = redirURL;</script>');
 }
 ?>

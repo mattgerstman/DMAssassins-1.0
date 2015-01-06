@@ -5,11 +5,11 @@ function checkAdmin()
 {
 	//check if logged in
 	check();
-	
+
 	//then check if admin
-	if(($_SESSION['usertype'] || $_SESSION['username'] == "mgerstman"))
+	if(($_SESSION['DM1-usertype'] || $_SESSION['DM1-username'] == "mgerstman"))
 	{
-		
+
 	}
 	else
 	{

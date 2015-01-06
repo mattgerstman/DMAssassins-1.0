@@ -22,7 +22,7 @@ include("getTeam.php");
 
 
 <?php
-	$username = $_SESSION['username'];
+	$username = $_SESSION['DM1-username'];
 	$table = "users";
 
 $teamOrder		=	$_GET['teamOrder'];
@@ -46,29 +46,29 @@ if ($standingOrder==NULL)
 	$standingOrder=2;
 
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 	echo("<p class='special'>Got an idea for the <a href='http://www.twitter.com/DMAssassins'>DMAssassins</a> feed? Submit tweet ideas here: <a href='http://goo.gl/qxU7L'>goo.gl/qxU7L</a>.</p>");
 
-$result = mysql_query("SELECT * FROM $table WHERE pin > 100 ORDER BY killed DESC LIMIT 5");	
+$result = mysql_query("SELECT * FROM $table WHERE pin > 100 ORDER BY killed DESC LIMIT 5");
 	echo('<h2>Top 5 Players Overall</h2>');
 	echo('<table border="1">
 	<tr>
 	<th>Name</th>
 	<th>Team</th>
-	<th>&nbsp;Alive&nbsp;</th>	
+	<th>&nbsp;Alive&nbsp;</th>
 	<th>&nbsp;Kills&nbsp;</th>');
-	
+
 while ($row = mysql_fetch_array($result))
 	{//loop through users
 
-//get user info	
+//get user info
 		$name = $row["name"];
 		$kills = $row["killed"];
 		$team = $row["team"];
-		$alive = $row["alive"];		
+		$alive = $row["alive"];
 		$outputTeam = getTeam($team);
-		
+
 		if ($alive)
 			$aliveText = "Yes";
 		else
@@ -76,13 +76,13 @@ while ($row = mysql_fetch_array($result))
 
 //print user info
 		echo('</tr><tr><td align="center">'.$name);
-		echo('</td><td align="center">'.$outputTeam);		
-		echo('</td><td align="center">'.$aliveText);		
-		echo('</td><td align="center">'.$kills);		
-		
+		echo('</td><td align="center">'.$outputTeam);
+		echo('</td><td align="center">'.$aliveText);
+		echo('</td><td align="center">'.$kills);
+
 	}
 	echo('</td></tr></table>');
-	
+
 	switch ($teamOrder)
 	{
 		case	0	: $order = "(SUM(killed)/COUNT(name))"; break;
@@ -91,7 +91,7 @@ while ($row = mysql_fetch_array($result))
 		case	3	: $order = "SUM(alive)"; break;
 		case	4	: $order = "SUM(killed)"; break;
 	}
-	
+
 	for ($i=0; $i<5; $i++)
 	{
 		$teamLink[$i] ="leaderboard.php?standingOrder=$standingOrder&&standingASC=$standingASC&&teamOrder=$i&&teamASC=";
@@ -103,19 +103,19 @@ while ($row = mysql_fetch_array($result))
 			$teamLink[$i] = $teamLink[$i] . "1";
 	}
 
-	
-	
+
+
 
 
 	$playersLink ="leaderboard.php?standingOrder=$standingOrder&&standingASC=$standingASC&&teamOrder=1&&teamASC=".$teamLink;
-	
-			
+
+
 	$result = mysql_query("SELECT team, SUM(alive), SUM(killed), COUNT(name) FROM $table GROUP BY team ORDER BY $order $teamASCU");
 	echo('<h2>Team Stats</h2>');
 	echo('<table border="1">
 	<tr>
 	<th>&nbsp;<a href="'.$teamLink[1].'">Team</a>&nbsp;</th>
-	<th>&nbsp;<a href="'.$teamLink[2].'">Players</a>&nbsp;</th>	
+	<th>&nbsp;<a href="'.$teamLink[2].'">Players</a>&nbsp;</th>
 	<th>&nbsp;<a href="'.$teamLink[3].'">Alive</a>&nbsp;</th>
 	<th>&nbsp;<a href="'.$teamLink[4].'">Kills</a>&nbsp;</th>
 	<th>&nbsp;<a href="'.$teamLink[0].'">Kills Per Player</a>&nbsp;</th>');
@@ -140,24 +140,24 @@ while ($row = mysql_fetch_array($result))
 
 //print user info
 		echo('</tr><tr><td align="center">'.$outputTeam);
-		echo('</td><td align="center">'.$players);		
+		echo('</td><td align="center">'.$players);
 		echo('</td><td align="center">'.$alive);
 		echo('</td><td align="center">'.$kills);
-		echo('</td><td align="center">'.round($killsPerPlayer,3));		
+		echo('</td><td align="center">'.round($killsPerPlayer,3));
 	}
 	$percentAlive = $totalAlive/$totalPlayers * 100;
 	if ($dead)
 		$killsPerPlayer=$dead/$totalPlayers;
 	else
 		$killsPerPlayer=0;
-	
-	
+
+
 	echo('</tr><tr><td align="center"> Total');
-	echo('</td><td align="center">'.$totalPlayers);		
+	echo('</td><td align="center">'.$totalPlayers);
 	echo('</td><td align="center">'.$totalAlive);
-	echo('</td><td align="center">'.$dead);		
+	echo('</td><td align="center">'.$dead);
 	echo('</td><td align="center">'.round($killsPerPlayer,3));
-	
+
 	echo('</td></tr></table>');
 
 //get list of all user's who are alive
@@ -191,7 +191,7 @@ for ($i=0; $i<3; $i++)
 	while ($row = mysql_fetch_array($result))
 	{//loop through users
 
-//get user info	
+//get user info
 		$name = $row["name"];
 		$kills = $row["killed"];
 		$team = $row["team"];
@@ -199,13 +199,13 @@ for ($i=0; $i<3; $i++)
 
 //print user info
 		echo('</tr><tr><td align="center">'.$name);
-		echo('</td><td align="center">'.$outputTeam);		
-		echo('</td><td align="center">'.$kills);	
+		echo('</td><td align="center">'.$outputTeam);
+		echo('</td><td align="center">'.$kills);
 	}
 		echo('</td></tr></table>');
-	
-	
-	
+
+
+
 
 ?>
 

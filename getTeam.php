@@ -15,7 +15,7 @@ function getTeam($teamNum)
 		case	9	: $outputTeam = "Public Relations"; break;
 		case	10	: $outputTeam = "Recruitment"; break;
 		case	11	: $outputTeam = "Technology"; break;
-		case	-1	: $outputTeam = "Admin"; break;		
+		case	-1	: $outputTeam = "Admin"; break;
 	}
 	return $outputTeam;
 }
