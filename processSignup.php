@@ -5,7 +5,7 @@ session_start();
 
 <?php
 
-include_once("connectToServer.php");	
+include_once("connectToServer.php");
 connect();
 
 include("assignPin.php");
@@ -17,48 +17,48 @@ include("assignPin.php");
 	$password = $_POST["password"];
 	$facebook = $_POST["facebook"];
 	$email = $_POST["email"];
-	$team = $_POST["team"];	
+	$team = $_POST["team"];
 	$pin = assignPin();
-	
+
 //combine names, encrypt password, and make sure facebook includes http://
 	$name = htmlspecialchars(ucwords($firstname . " " . $lastname));
 	$encryptPassword = md5($password);
-	
-	
-	
+
+
+
 	if (strlen($firstname) == 0 || strlen($lastname) == 0)
 	{
-		$_SESSION['status'] = $_SESSION['status'] . "<p>Your first and last name cannot be left blank.</p>";
+		$_SESSION['DM1-status'] = $_SESSION['DM1-status'] . "<p>Your first and last name cannot be left blank.</p>";
 	}
-	
+
 	if (strlen($username) == 0)
 	{
-		$_SESSION['status'] = $_SESSION['status'] . "<p>Your username cannot be left blank.</p>";
+		$_SESSION['DM1-status'] = $_SESSION['DM1-status'] . "<p>Your username cannot be left blank.</p>";
 	}
-	
+
 	if (strlen($password) == 0)
 	{
-		$_SESSION['status'] = $_SESSION['status'] . "<p>Your password cannot be left blank.</p>";
+		$_SESSION['DM1-status'] = $_SESSION['DM1-status'] . "<p>Your password cannot be left blank.</p>";
 	}
-	
+
 	if (strlen($facebook) == 0)
 	{
-		$_SESSION['status'] = $_SESSION['status'] . "<p>Your Facebook link cannot be left blank.</p>";		
+		$_SESSION['DM1-status'] = $_SESSION['DM1-status'] . "<p>Your Facebook link cannot be left blank.</p>";
 	}
 	else if (strlen($facebook) < 14)
 	{
-		$_SESSION['status'] = "<p>Please enter your Facebook in the format http://www.facebook.com/<i>yourusernamehere</i></p>";
+		$_SESSION['DM1-status'] = "<p>Please enter your Facebook in the format http://www.facebook.com/<i>yourusernamehere</i></p>";
 	}
 	else if (substr($facebook,0,4) != "http")
 	{
 		$facebook = "http://".$facebook;
 	}
-	
 
-	
+
+
 	if (strlen($email) == 0)
 	{
-		$_SESSION['status'] = $_SESSION['status'] . "<p>Your email address cannot be left blank.</p>";
+		$_SESSION['DM1-status'] = $_SESSION['DM1-status'] . "<p>Your email address cannot be left blank.</p>";
 	}
 
 
@@ -66,31 +66,31 @@ include("assignPin.php");
 //check to make sure user doesnt already exist
 	$sql0 = "SELECT * FROM users WHERE username = '$username' OR name = '$name' OR email = '$email'";
 	$sql0 = mysql_query($sql0);
-	
-if ((mysql_num_rows($sql0)==0) && (strlen($_SESSION['status'])==0))
+
+if ((mysql_num_rows($sql0)==0) && (strlen($_SESSION['DM1-status'])==0))
 {
 
 //add user
     $sql1 = "INSERT INTO users SET pin = $pin, username='$username', password = '$encryptPassword', name = '$name', email = '$email', facebook = '$facebook', team='$team', usertype = 0, killed = 0, alive = 1, target = 0, targetted = 0;";
-	mysql_query($sql1);	
+	mysql_query($sql1);
 
     $sql2 = "SELECT * FROM users WHERE pin = $pin";
 	$sql2= mysql_query($sql2);
-	
+
 if (mysql_num_rows($sql2))
 {
-//get user's team	
+//get user's team
 	include("getTeam.php");
 	$outputTeam = getTeam($team);
 
-//email user their information	
+//email user their information
 	$subject = 'Assassins Account Information';
 
 //indentation here is important. if you include an indentation in the message it will show up in the email itself. Also HTML doesn't translate in the email.
 	$message = "Hello $name,
-	
+
 Thank you for signing up to play assassins with Dance Marathon.
-	
+
 Your account information is below:
  	Username:	$username
 	Password:	$password
@@ -113,33 +113,33 @@ P.S. Super awesome stuff at http://www.twitter.com/DMAssassins";
 
 
 
-	 $_SESSION['username'] = htmlspecialchars($username);
-	 $_SESSION['usertype'] = 0;
-	
+	 $_SESSION['DM1-username'] = htmlspecialchars($username);
+	 $_SESSION['DM1-usertype'] = 0;
+
 	echo('<SCRIPT LANGUAGE="JavaScript">redirURL = "index.php";self.location.href = redirURL;</script>');
 }
 else
 {
-	$_SESSION['status'] = "<p>An error occurred while processing your account. Please try again later.</p>";
+	$_SESSION['DM1-status'] = "<p>An error occurred while processing your account. Please try again later.</p>";
 }
-}	
+}
 
 else
 {//if user already has an account, inform them
 	$sql1 = "SELECT * FROM users WHERE username = '$username'";
 	$sql1 = mysql_query($sql1);
-	
+
 	if (mysql_num_rows($sql1)!=0)
 	{
-		$_SESSION['status'] = "<p>That username is already taken.</p>";
+		$_SESSION['DM1-status'] = "<p>That username is already taken.</p>";
 	}
-	else if ((strlen($_SESSION['status'])==0)|| (mysql_num_rows($sql0)!=0))
-		$_SESSION['status'] = "<p><strong>Error:</strong> You have already signed up. If you believe this is in error please contact your overall.<p>";
+	else if ((strlen($_SESSION['DM1-status'])==0)|| (mysql_num_rows($sql0)!=0))
+		$_SESSION['DM1-status'] = "<p><strong>Error:</strong> You have already signed up. If you believe this is in error please contact your overall.<p>";
 
 
 }
 	echo('<SCRIPT LANGUAGE="JavaScript">redirURL = "index.php";	self.location.href = redirURL;</script>');
-	
+
 ?>
 
 

@@ -18,14 +18,14 @@ connect();
 <?php
 include("getTeam.php");
 
-$myTeam = $_SESSION['team'];
+$myTeam = $_SESSION['DM1-team'];
 $teamNum = $_GET['team'];
 if ($teamNum == NULL)
 {//if overall link is wrong default to team from session
 	$teamNum = $myTeam;
 }
 
-if ($teamNum!=$myTeam && $myTeam!=-1 && $_SESSION['username']!='mgerstman')
+if ($teamNum!=$myTeam && $myTeam!=-1 && $_SESSION['DM1-username']!='mgerstman')
 {//if user is not an admin and trying to get on another team redirect to their own team
 	echo('<SCRIPT LANGUAGE="JavaScript">
 	redirURL = "overall.php?team='.$teamNum.'";
@@ -43,37 +43,37 @@ echo("<title>Overall Panel: $outputTeam</title>");
 
 <body>
 <?php
-	$username = $_SESSION['username'];
+	$username = $_SESSION['DM1-username'];
 	$table = "users";
 
 
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 
 
 	echo('<p>'.getTeam($teamNum).' Team</p><br />');
 
 	$result = mysql_query("SELECT * FROM $table where team = $teamNum ORDER BY name");
-	
+
 //get list of all user's with the same team as the overall
 while ($row = mysql_fetch_array($result))
 	{//loop through users
 
-//get user info	
+//get user info
 		$name = $row["name"];
 		$username = $row["username"];
 		$facebook = $row["facebook"];
 		$email = $row["email"];
 		$target = $row["target"];
 		$alive = $row["alive"];
-		
+
 //print user info
-		echo("Name: ".$name);	
+		echo("Name: ".$name);
 		echo('<br />Facebook: <a href="'.$facebook.'">'.$facebook.'</a>');
 		echo('<br />Email: <a href="mailto:'.$email.'">'.$email.'</a>');
 		echo('<br /><a href="editUser.php?username='.$username.'"> Edit</a> ');
-		
+
 		if ($alive)
 		{//check if alive, if they are allow overall to kill them
 			echo(' &nbsp; <a href="killUser.php?username='.$username.'" onclick="return confirm('."'Are you sure you want to kill this user? If yes, then click OK.'".')">Kill</a>');

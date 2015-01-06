@@ -5,14 +5,14 @@ function checkSuperAdmin()
 {
 	//check if admin
 	checkAdmin();
-	
+
 	include_once("connectToServer.php");
 	connect();
-	
-	$username = $_SESSION['username'];
+
+	$username = $_SESSION['DM1-username'];
 	$table = "users";
-	
-	if ($_SESSION['team'] == -1 || $_SESSION['username'] == "mgerstman" || $_SESSION['username'] == "sgiordano")
+
+	if ($_SESSION['DM1-team'] == -1 || $_SESSION['DM1-username'] == "mgerstman" || $_SESSION['DM1-username'] == "sgiordano")
 	{
 	}
 	else

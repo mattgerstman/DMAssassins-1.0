@@ -2,7 +2,7 @@
 session_start();
 
 $pw = md5($_GET['pw']);
-if (($_SESSION['username'] != "mgerstman") && ($_SESSION['username'] != "sgiordano") && $_SESSION['usertype']!=-1 && $_SESSION['usertype']!=1)
+if (($_SESSION['DM1-username'] != "mgerstman") && ($_SESSION['DM1-username'] != "sgiordano") && $_SESSION['DM1-usertype']!=-1 && $_SESSION['DM1-usertype']!=1)
 {
 	header("Location: index.php");
 }
@@ -31,7 +31,7 @@ while ($row = mysql_fetch_array($result))
 	$method = $row["method"];
 	$pin = $row['pin'];
 	$team = $row['team'];
-		
+
 	for ($i=-1; $i<12; $i++)
 	{
 		$selectVal[$i]='"' . $i. '"';
@@ -40,7 +40,7 @@ while ($row = mysql_fetch_array($result))
 			$selectVal[$i] = $i . ' selected';
 		}
 	}
-	
+
 
 	echo($pin.") ".$method.' <form action="processEditTweet.php" method="post">
 		<input type="hidden" name="pin" value ='.$pin.' />
@@ -61,7 +61,7 @@ while ($row = mysql_fetch_array($result))
 		<option value='.$selectVal[10].'>Recruitment</option>
 		<option value='.$selectVal[11].'>Technology</option>
 	</select>
-	&nbsp;Delete:<input type="checkbox" name="delete" value="1" /> 
+	&nbsp;Delete:<input type="checkbox" name="delete" value="1" />
 	<input type="submit" value="Submit" /></form>');
 
 }

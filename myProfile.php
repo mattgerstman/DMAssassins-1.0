@@ -30,13 +30,13 @@ include('getTeam.php');
 		}
 </script>
 <body>
-	
+
 
 
 <?php
 
-	$username = $_SESSION['username'];
-	$usertype = $_SESSION['usertype'];	
+	$username = $_SESSION['DM1-username'];
+	$usertype = $_SESSION['DM1-usertype'];
 	$table = "users";
 
 
@@ -45,7 +45,7 @@ include('getTeam.php');
 
 include_once("connectToServer.php");
 connect();
-	
+
 //get personal info
 	$result = mysql_query("SELECT * FROM $table where username = '$username'");
 	$pin = mysql_result($result,0,"pin");
@@ -53,10 +53,10 @@ connect();
 	$facebook = mysql_result($result,0,"facebook");
 	$email = mysql_result($result,0,"email");
 	$team = mysql_result($result,0,"team");
-	$kills = mysql_result($result,0,"killed");	
+	$kills = mysql_result($result,0,"killed");
 	$outputTeam = getTeam($team);
-	
-//output personal info	
+
+//output personal info
 	echo('Pin Number: '.$pin);
 	echo('<br />Kills: '.$kills);
 	echo("<br /><br />Name: ".$name);
@@ -91,8 +91,8 @@ Change Password<br/>
 
 <?php
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 ?>
 
 

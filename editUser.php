@@ -34,7 +34,7 @@ connect();
 		$email = mysql_result($result,0,"email");
 		$team =  mysql_result($result,0,"team");
 		$admin =  mysql_result($result,0,"usertype");
-//code to handle middle names		
+//code to handle middle names
 
 		$numNames = str_word_count($name,0,'&;') - 1;
 		$nameList = str_word_count($name,1,'&;');
@@ -44,7 +44,7 @@ connect();
 		}
 		$lastname = $nameList[$numNames];
 
-//set's up form to preselect team name		
+//set's up form to preselect team name
 		for ($i=-1; $i<12; $i++)
 		{
 			$selectVal[$i]='"' . $i. '"';
@@ -61,7 +61,7 @@ connect();
 		<br />
 		Facebook Link: <input type="text" name="facebook" value="'.$facebook.'" /><br />
 		Email: <input type="text" name="email" value = "'.$email.'" /><br />');
-		if (($username!=$_SESSION['username']) || ($_SESSION['team']==12))
+		if (($username!=$_SESSION['DM1-username']) || ($_SESSION['DM1-team']==12))
 		{//if statement blocks changing your own team. This prevents cheating.
 			echo('Team: <select name="team">
 			<option value='.$selectVal[0].'>Community Events</option>
@@ -76,22 +76,22 @@ connect();
 			<option value='.$selectVal[9].'>Public Relations</option>
 			<option value='.$selectVal[10].'>Recruitment</option>
 			<option value='.$selectVal[11].'>Technology</option>');
-			if ($_SESSION['team']==-1 || $_SESSION['username'] == "mgerstman" || $_SESSION['username'] == "sgiordano")
+			if ($_SESSION['DM1-team']==-1 || $_SESSION['DM1-username'] == "mgerstman" || $_SESSION['DM1-username'] == "sgiordano")
 			{
 				echo('<option value='.$selectVal[-1].'>Admin</option>');
 			}
 			echo('</select><br />');
-		
+
 			$adminVal[0] = "0";
 			$adminVal[1] = "1";
 			$adminVal[$admin] = $adminVal[$admin] . ' selected';
-		
+
 			echo('Usertype: <select name="admin">
 			<option value='.$adminVal[0].'>Captain</option>
 			<option value='.$adminVal[1].'>Overall</option>');
-			echo('</select><br />');			
+			echo('</select><br />');
 	}
-		
+
 		echo('<input type="submit" value="Submit" />');
 
 
@@ -102,8 +102,8 @@ connect();
 
 <?php
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 ?>
 
 

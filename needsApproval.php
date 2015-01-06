@@ -1,7 +1,7 @@
 <?
 session_start();
 $pw = md5($_GET['pw']);
-if (($_SESSION['username'] != "mgerstman") && ($_SESSION['username'] != "sgiordano") && $_SESSION['usertype']!=-1)
+if (($_SESSION['DM1-username'] != "mgerstman") && ($_SESSION['DM1-username'] != "sgiordano") && $_SESSION['DM1-usertype']!=-1)
 {
 	header("Location: index.php");
 }
@@ -22,7 +22,7 @@ if (mysql_num_rows($result)==0)
 
 while ($row = mysql_fetch_array($result))
 {
-	
+
 	$method = $row["method"];
 	echo($method. '<br /><form action="processApproval.php" method="post">
 		<input type="hidden" name="pw" value ="5f4dcc3b5aa765d61d8327deb882cf99"/>
@@ -46,10 +46,10 @@ while ($row = mysql_fetch_array($result))
 	</select><br />
 	<input type="submit" value="Submit" /></form>
 	<br /><br />');
-	
+
 }
 
-echo($_SESSION['approve']);
+echo($_SESSION['DM1-approve']);
 
 ?>
 
@@ -75,8 +75,8 @@ echo($_SESSION['approve']);
 </select><br />
 <br /><input type="submit" value="Submit" /></form>
 <?php
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 ?>
 </div>
 <link href="styles.css" rel="stylesheet" type="text/css" />

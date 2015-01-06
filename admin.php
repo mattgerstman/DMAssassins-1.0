@@ -19,7 +19,7 @@ checkSuperAdmin();
 
 
 <?php
-	$username = $_SESSION['username'];
+	$username = $_SESSION['DM1-username'];
 	$table = "users";
 
 include("dashboard.php");
@@ -27,8 +27,8 @@ printDashboard(4);
 include("getTeam.php");
 
 
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 
 
 //get list of all user's with the same team as the overall
@@ -47,7 +47,7 @@ echo('<br /><br />Overall List<br />');
 while ($row = mysql_fetch_array($result))
 	{//loop through users
 
-//get user info	
+//get user info
 		$name = $row["name"];
 		$username = $row["username"];
 		$facebook = $row["facebook"];
@@ -56,7 +56,7 @@ while ($row = mysql_fetch_array($result))
 		$target = $row["target"];
 
 //print user info
-		echo("<br />Name: ".$name);	
+		echo("<br />Name: ".$name);
 		echo('<br />Facebook: <a href="'.$facebook.'">'.$facebook.'</a>');
 		echo('<br />Email: <a href="mailto:'.$email.'">'.$email.'</a>');
 		echo('<br /><a href="editUser.php?username='.$username.'"> Edit</a> ');

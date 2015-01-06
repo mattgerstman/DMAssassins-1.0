@@ -13,7 +13,7 @@ session_start();
 Want to see your idea posted when a player dies? You're in the right place. <br />
 <br />
 All of the tweets need to include the persons name to be worth it. <br /> When you want to insert someone's full name into the submission include the text: "THEIRNAME" in all caps.<br /> If you want to insert just their first name use "THEIR". <br /> <br /> When a player dies the software will then randomly pick a submission and<br /> replace "THEIR" and "THEIRNAME" with the person's name. <br />I've included a few examples below to help.
-<br /><br /> 
+<br /><br />
 THEIRNAME was killed in a tragic segway accident.<br />
 THEIRNAME died from video game withdrawal. THEIR is now playing Nintendo in heaven.<br />
 King Kong threw THEIRNAME off of a building. THEIR will be missed. <br />
@@ -33,8 +33,8 @@ Also here's some other things to keep in mind:<br />
 
 <?php
 
-echo($_SESSION['nope']);
-unset($_SESSION['nope']);
+echo($_SESSION['DM1-nope']);
+unset($_SESSION['DM1-nope']);
 
 ?>
 

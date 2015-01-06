@@ -20,9 +20,9 @@ printDashboard(0);
 <?php
 
 //get user info from cookies
-	$username = $_SESSION['username'];
+	$username = $_SESSION['DM1-username'];
 	$table = "users";
-		
+
 //display dashboard links
 
 
@@ -31,10 +31,10 @@ printDashboard(0);
 include_once("connectToServer.php");
 connect();
 
-//get user's target	
+//get user's target
 
-	$result = mysql_query("SELECT * FROM $table where username ='$username'");	
-	$alive = mysql_result($result,0, "alive");	
+	$result = mysql_query("SELECT * FROM $table where username ='$username'");
+	$alive = mysql_result($result,0, "alive");
 	$target = mysql_result($result,0, "target");
 	$myPin = mysql_result($result,0, "pin");
 
@@ -63,7 +63,7 @@ The Assassins Staff";
 		mail($theirEmail, $subject, $message, $headers);
 		mail("imatt711@me.com", $subject, $message, $headers);
 	}*/
-	
+
 	if ($target)
 //	if (false)
 	{
@@ -71,9 +71,9 @@ The Assassins Staff";
 		<br />");
 
 		echo("<p class='special'>Got an idea for the <a href='http://www.twitter.com/DMAssassins'>DMAssassins</a> feed? Submit tweet ideas <a href='/waysYouCanDie.php'>here</a>.</p><br />");
-		
+
 		//get's target info from server
-		
+
 		$result = mysql_query("SELECT * FROM $table where pin = $target");
 		$targetName = mysql_result($result,0,"name");
 		$targetFacebook = mysql_result($result,0,"facebook");
@@ -103,15 +103,15 @@ The Assassins Staff";
 		<form action="killTarget.php" method="post">
 		<br /><input type="text" name="targetPin" /><br />
 		<input type="submit" value="Kill Target" /><br /><br />');
-		
-		
+
+
 		$result = mysql_query("SELECT * FROM $table where team=$team AND usertype = 1");
-		
+
 		if (mysql_num_rows($result))
 			$overallEmail = mysql_result($result,0,"email");
 		else
 			$overallEmail = "spookp@floridadm.org";
-		
+
 		echo("If your target's Facebook is unaccessible you can email<br /> their overall at: <a href='mailto:$overallEmail'>$overallEmail</a>");
 	}
 	else if ($alive)
@@ -130,8 +130,8 @@ The Assassins Staff";
 <?php
 echo('<br/>');
 echo('<br/>');
-echo($_SESSION['status']);
-unset($_SESSION['status']);
+echo($_SESSION['DM1-status']);
+unset($_SESSION['DM1-status']);
 ?>
 
 </div>

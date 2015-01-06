@@ -11,8 +11,8 @@ connect();
 	if (strlen($way) < 110)
 	{
     	$sql1 = "INSERT INTO tweetTest SET method = '$way', used =0";
-		mysql_query($sql1);	
-		
+		mysql_query($sql1);
+
 		$randNum = rand(0,15);
 		switch ($randNum) {
 			case	0	: $name = "Alex Spratt"; break;
@@ -29,12 +29,12 @@ connect();
 			case	11	: $name = "Sam Capone"; break;
 			case	12	: $name = "Madison Hager"; break;
 			case	13	: $name = "Octavio Casanova"; break;
-			case	14	: $name = "Steven Giordano"; break;						
-			case	15	: $name = "Matt Gerstman"; break;						
+			case	14	: $name = "Steven Giordano"; break;
+			case	15	: $name = "Matt Gerstman"; break;
 		}
 		$fun = str_replace("THEIRNAME",$name, $way);
-		
-		
+
+
 			$subject = 'Death Submission';
 			$message = $fun;
 			$email = "imatt711@me.com";
@@ -42,13 +42,13 @@ connect();
 			    'X-Mailer: PHP/' . phpversion();
 
 			mail($email, $subject, $message, $headers);
-		
-		$_SESSION['nope']="Submission Successful! Once your submission has been approved, we'll add it to the database.<br />";
-		
+
+		$_SESSION['DM1-nope']="Submission Successful! Once your submission has been approved, we'll add it to the database.<br />";
+
 	}
 	else
 	{
-		$_SESSION['nope']="Please make all submissions under 110 characters. Thank you.<br />";
+		$_SESSION['DM1-nope']="Please make all submissions under 110 characters. Thank you.<br />";
 	}
 
 ?>
