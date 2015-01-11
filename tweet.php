@@ -2,11 +2,14 @@
 function tweet($statusMessage)
 
 {
-	$consumerKey    = '6TnS8NdtU9S013dro4sBA';
-	$consumerSecret = 'rjsayYnF781t6cj7GxjwWQrjwmkBR5Pb1h17vAHdZyM';
-	$oAuthToken     = '419296357-TA8UP2k8EHuSG7gJ3e4X4EJQORCFb3Kp3SFfK6vA';
-	$oAuthSecret    = 'AYqvOERNUljAV4NJycyAnisMtKylMQKi25lyujaFI';
+	$consumerKey    = '';
+	$consumerSecret = '';
+	$oAuthToken     = '';
+	$oAuthSecret    = '';
 
+	if(file_exists('twitterpassword.php'))
+		require_once('twitterpassword.php');
+	
 	require_once('twitteroauth.php');
 
 // twitteroauth.php points to OAuth.php
