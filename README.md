@@ -9,4 +9,4 @@ The UI is clearly lacking and it almost all of the forms are open to SQL injecti
 
 Some of the cooler features include a working admin panel and a twitter engine. When a player died the app would automatically tweet a funny way that player "died."
 
-This was later replaced by [DMAssassins-2.0](https://github.com/mattgerstman/DMAssassins-2.0) and the current version [DMAssassins](https://dmassassins.com).
+This was later replaced by [DMAssassins-2.0](https://github.com/mattgerstman/DMAssassins-2.0) and the current version [DMAssassins](https://github.com/mattgerstman/DMAssassins).
